@@ -1,68 +1,43 @@
 import React, { Component } from 'react'
-import Task from './components/Task/Task'
-import TaskInput from './components/Task/TaskInput/TaskInput'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-class App extends Component {
-  state = {
-    tasks: [
-      { id: 0, title: 'Create to-do', done: false},
-      { id: 1, title: 'Create to-do', done: true},
-      { id: 2, title: 'Create to-do', done: false},
-    ]
-  }
+import Header from './Components/Header/Header'
+import Footer from './Components/Footer/Footer'
 
-  doneTask = id => {
-    const index = this.state.tasks.map(task => task.id).indexOf(id);
-    this.setState(state => {
-      let {tasks} = state;
-      tasks[index].done = true;
-      return tasks
-    })
-  }
-
-  deleteTask = id => {
-    const index = this.state.tasks.map(task => task.id).indexOf(id);
-    this.setState(state => {
-      let {tasks} = state;
-      delete tasks[index];
-      return tasks
-    })
-  }
-
-  addTask = task => {
-    this.setState( state => {
-      let { tasks } = state;
-      tasks.push({
-        id: tasks.length !== 0 ? tasks.length : 0,
-        title: task,
-        done : false
-      });
-      return tasks;
-    })
-  }
-
-  render() {
-    const activeTasks = this.state.tasks.filter(task => !task.done)
-    const doneTasks = this.state.tasks.filter(task => task.done)
+import Home from './Components/Pages/Home/Home'
+import Create from './Components/Pages/Create/Create'
+import Tasks from './Components/Pages/Tasks/Tasks'
+import TaskDetail from './Components/Pages/Tasks/TaskDetail/TaskDetail'
+import TaskEdit from './Components/Pages/Tasks/TaskEdit/TaskEdit'
 
 
-    return (
-      <div className="App">
-        <h1 className="top">Active tasks: {activeTasks.length}</h1>
-        {[...activeTasks, ...doneTasks].map(task => (
-          <Task  
-            doneTask={() => this.doneTask(task.id)} 
-            deleteTask={() => this.deleteTask(task.id)} 
-            task={task} 
-            key={task.id} 
-          />
-        ))}
-        <TaskInput addTask={this.addTask} />
+
+const App = () => {
+    
+  return (
+    <div className="wrapper">
+      <Header />
+
+      <div className="content">
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/create" component={Create} />
+            <Route path="/tasks" component={Tasks} />
+            <Route path="/task/:id/edit" component={TaskEdit} />
+            <Route path="/task/:id" component={TaskDetail} />
+
+
+            <Redirect to="/" />
+          </Switch>
+        </div>
       </div>
-    )
-  }
 
+      <Footer />
 
+    </div>
+  )
 }
 
 export default App
+
