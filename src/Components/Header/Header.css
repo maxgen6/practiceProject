@@ -52,3 +52,8 @@ li {
     font-weight: bold;
 }
 
+.active {
+    color: tomato;
+    font-weight: bold;
+}
+

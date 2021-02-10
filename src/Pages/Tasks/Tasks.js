@@ -1,29 +1,28 @@
 import React, { Component } from "react";
 import "./Tasks.css";
 import Task from "../../Components/Task/Task"
+import {connect} from 'react-redux'
+import {getTasks, 
+        clickTaskDelete,
+        setToLS, 
+        clickTaskDone,
+        clickAllTaskDelete
+        } from '../../store/actions/tasks'
 
 class Tasks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: [],
-      disabled: true,
-      taskDone: 0,
-    };
+  state = {
+    taskDone: 0
   }
 
   componentDidMount() {
-    this.setState({
-      tasks: JSON.parse(localStorage.getItem("tasks"))
-        ? JSON.parse(localStorage.getItem("tasks"))
-        : [],
-    });
+    this.props.getTasks()
   }
 
-  setToLS = (task) => localStorage.setItem("tasks", JSON.stringify(task));
+  setToLS = tasks => this.props.setToLS(tasks);
 
   doneHandler = () => {
-    const tasks = [...this.state.tasks];
+    // this.props.doneHandlerTask()
+    const tasks = [...this.props.tasks];
     let taskDone = this.state.taskDone;
 
     tasks.map((item) => (item.status === "Done" ? taskDone++ : taskDone));
@@ -32,26 +31,29 @@ class Tasks extends Component {
   };
 
   clickDoneHandler = (id) => {
-    const tasks = [...this.state.tasks];
-    const idx = tasks.findIndex((c) => c.id === id);
-    tasks[idx].status = "Done";
-    this.setState({ tasks });
-    this.setToLS(tasks);
+    this.props.clickTaskDone(id)
+    // const tasks = [...this.state.tasks];
+    // const idx = tasks.findIndex((c) => c.id === id);
+    // tasks[idx].status = "Done";
+    // this.setState({ tasks });
+    // this.setToLS(tasks);
   };
 
   clickTaskDelete = (id) => {
-    const tasks = [...this.state.tasks];
-    const idx = tasks.findIndex((c) => c.id === id);
-    tasks.splice(idx, 1);
-    this.setState({ tasks });
-    this.setToLS(tasks);
+    this.props.clickTaskDelete(id)
+    // const tasks = [...this.state.tasks];
+    // const idx = tasks.findIndex((c) => c.id === id);
+    // tasks.splice(idx, 1);
+    // this.setState({ tasks });
+    // this.setToLS(tasks);
   };
 
   deleteAllTask = () => {
-    const tasks = [...this.state.tasks];
-    tasks.splice(0, tasks.length);
-    this.setState({ tasks });
-    this.setToLS(tasks);
+    this.props.clickAllTaskDelete()
+    // const tasks = [...this.state.tasks];
+    // tasks.splice(0, tasks.length);
+    // this.setState({ tasks });
+    // this.setToLS(tasks);
   };
 
   clickTaskOpen = (task) => {
@@ -67,7 +69,7 @@ class Tasks extends Component {
       <div className="todos">
         <div className="todos-block">
           <p>
-            Выполнено задач {this.doneHandler()} из {this.state.tasks.length}{" "}
+            Выполнено задач {this.doneHandler()} из {this.props.tasks.length}
           </p>
           <button onClick={this.deleteAllTask} className="btn btn-danger">
             Удалить все задачи
@@ -77,9 +79,9 @@ class Tasks extends Component {
         <hr />
 
         <div className="tasks">
-          {this.state.tasks.length ? (
+          {this.props.tasks.length ? (
             <Task
-              tasks={this.state.tasks}
+              tasks={this.props.tasks}
               clickDoneHandler={this.clickDoneHandler}
               clickTaskDelete={this.clickTaskDelete}
               clickTaskOpen={this.clickTaskOpen}
@@ -94,4 +96,20 @@ class Tasks extends Component {
   }
 }
 
-export default Tasks;
+function mapStateToProps(state) {
+  return {
+    tasks: state.tasks.tasks
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getTasks: () => dispatch(getTasks()),
+    setToLS: task => dispatch(setToLS(task)),
+    clickTaskDelete: id => dispatch(clickTaskDelete(id)),
+    clickTaskDone: id => dispatch(clickTaskDone(id)),
+    clickAllTaskDelete: () => dispatch(clickAllTaskDelete())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tasks)
