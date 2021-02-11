@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Task.css'
 
 const Task = props => {
@@ -11,7 +11,7 @@ const Task = props => {
                     <button 
                         onClick={props.clickTaskOpen.bind(null, task)}
                         className="btn btn-primary">Открыть</button>
-                    {task.status == 'Not' 
+                    {task.status === 'Not' 
                         ?   <>
                                 <button 
                                     onClick={props.clickDoneHandler.bind(null, task.id)} 

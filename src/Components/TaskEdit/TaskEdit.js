@@ -7,12 +7,7 @@ import {
         } from '../../store/actions/tasks'
 
 class TaskEdit extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tasks: []
-        };
-    }
+    
     componentDidMount() {
         this.props.getTasks()
     }

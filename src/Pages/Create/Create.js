@@ -11,8 +11,7 @@ class Create extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks: [],
-            disabled: true,
+            disabled: true
         };
     }
 
