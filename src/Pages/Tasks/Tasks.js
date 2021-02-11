@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {getTasks, 
         clickTaskDelete,
         setToLS, 
-        clickTaskDone,
+        clickTaskDoneHandler,
         clickAllTaskDelete
         } from '../../store/actions/tasks'
 
@@ -31,7 +31,7 @@ class Tasks extends Component {
   };
 
   clickDoneHandler = (id) => {
-    this.props.clickTaskDone(id)
+    this.props.clickTaskDoneHandler(id)
     // const tasks = [...this.state.tasks];
     // const idx = tasks.findIndex((c) => c.id === id);
     // tasks[idx].status = "Done";
@@ -107,7 +107,7 @@ function mapDispatchToProps(dispatch) {
     getTasks: () => dispatch(getTasks()),
     setToLS: task => dispatch(setToLS(task)),
     clickTaskDelete: id => dispatch(clickTaskDelete(id)),
-    clickTaskDone: id => dispatch(clickTaskDone(id)),
+    clickTaskDoneHandler: id => dispatch(clickTaskDoneHandler(id)),
     clickAllTaskDelete: () => dispatch(clickAllTaskDelete())
   }
 }

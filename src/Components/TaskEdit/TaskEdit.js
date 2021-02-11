@@ -1,41 +1,44 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {
+        getTasks,
+        setToLS,
+        updateTaskHandler
+        } from '../../store/actions/tasks'
 
 class TaskEdit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks: [],
-            disabled: true,
-            taskDone: 0
+            tasks: []
         };
     }
     componentDidMount() {
-        this.setState({ tasks: JSON.parse(localStorage.getItem('tasks'))
-                        ? JSON.parse(localStorage.getItem('tasks'))
-                        : [] })
+        this.props.getTasks()
     }
 
-    setToLS = task => localStorage.setItem('tasks', JSON.stringify(task))
+    setToLS = tasks => this.props.setToLS(tasks)
 
     updateTask = id => {
-        const tasks = [...this.state.tasks]
-
+        this.props.updateTaskHandler(id)
         
-        let idx = tasks.findIndex(c => c.id === id)
-        let titleEdit = document.querySelector('.inputEdit__title').value
-        let descriptionEdit = document.querySelector('.inputEdit__description').value
-        tasks[idx].title = titleEdit
-        tasks[idx].description = descriptionEdit
+        // const tasks = [...this.state.tasks]
+        
+        // let idx = tasks.findIndex(c => c.id === id)
+        // let titleEdit = document.querySelector('.inputEdit__title').value
+        // let descriptionEdit = document.querySelector('.inputEdit__description').value
+        // tasks[idx].title = titleEdit
+        // tasks[idx].description = descriptionEdit
 
-        this.setState({ tasks })
-        this.setToLS(tasks)
+        // this.setState({ tasks })
+        // this.setToLS(tasks)
         this.props.history.push('/tasks')
     }
     
     
     render() {
         return (
-            <div className="taskedit">
+            <div className="taskedit" style={{marginLeft: '20px'}}>
                 <h1>Редактирование задачи</h1>
                 <p>
                     <b>ID: </b>
@@ -68,4 +71,18 @@ class TaskEdit extends Component {
     }
 }
 
-export default TaskEdit
+function mapStateToProps(state) {
+    return {
+        tasks: state.tasks.tasks
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getTasks: () => dispatch(getTasks()),
+        setToLS: task => dispatch(setToLS(task)),
+        updateTaskHandler: id => dispatch(updateTaskHandler(id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskEdit)

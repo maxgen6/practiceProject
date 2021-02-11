@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import './Create.css'
+import {connect} from 'react-redux'
+import {
+    getTasks,
+    setToLS,
+    createTask
+    } from '../../store/actions/tasks'
 
 class Create extends Component {
     constructor(props) {
@@ -7,37 +13,34 @@ class Create extends Component {
         this.state = {
             tasks: [],
             disabled: true,
-            input: ''
         };
     }
 
     componentDidMount() {
-        this.setState({ tasks: JSON.parse(localStorage.getItem('tasks'))
-                        ? JSON.parse(localStorage.getItem('tasks'))
-                        : [] })
+        this.props.getTasks()
     }
 
     btnDisabled = e => this.setState({ disabled: e.target.value ? false : true })
 
-    setToLS = task => localStorage.setItem('tasks', JSON.stringify(task))
+    setToLS = tasks => this.props.setToLS(tasks)
 
     createTask = e => {
         e.preventDefault()
+        this.props.createTask()
+        // const tasks = [...this.state.tasks]
+        // let title = document.querySelector('#title').value
+        // let description = document.querySelector('#description').value
 
-        const tasks = [...this.state.tasks]
-        let title = document.querySelector('#title').value
-        let description = document.querySelector('#description').value
+        // const newTask = {
+        //     id: Math.random().toString(36).substring(7),
+        //     title,
+        //     description : description ? description : 'Описание отсутствует',
+        //     status: 'Not'
+        // }
 
-        const newTask = {
-            id: Math.random().toString(36).substring(7),
-            title,
-            description : description ? description : 'Описание отсутствует',
-            status: 'Not'
-        }
-
-        tasks.push(newTask)
-        this.setState({tasks})
-        this.setToLS(tasks)
+        // tasks.push(newTask)
+        // this.setState({tasks})
+        // this.setToLS(tasks)
         document.querySelector('#title').value = ''
         document.querySelector('#description').value = ''
         this.props.history.push('/tasks')
@@ -64,4 +67,18 @@ class Create extends Component {
     }
 }
 
-export default Create
+function mapStateToProps(state) {
+    return {
+        tasks: state.tasks.tasks
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getTasks: () => dispatch(getTasks()),
+        setToLS: task => dispatch(setToLS(task)),
+        createTask: () => dispatch(createTask())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Create)
