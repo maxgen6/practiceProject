@@ -1,16 +1,16 @@
 .task {
-    border: 1px solid rgba(0 0 0 / 30%);
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    transition: .3s;
-    cursor: pointer;
-    margin-bottom: 20px;
+  border: 1px solid rgba(0 0 0 / 30%);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .task:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .title {
@@ -19,9 +19,9 @@
     margin-left: -5px;
 }
 
-.task__done{
-    background: rgb(75, 248, 7);
-    color: #ffffff;
+.task__done {
+  background: rgb(75, 248, 7);
+  color: #ffffff;
 }
 
 .title-media {
@@ -29,13 +29,6 @@
 }
 
 @media screen and (max-width: 770px) {
-    /* .title {
-        display: none;
-    }
-    .title-media {
-        display: block;
-    } */
-
     .title {
         display: flex;
         justify-content: center;
@@ -56,8 +49,3 @@
     }
 }
 
-
-/* .task__done  > .btn-block > .btn-success,
-.task__done  > .btn-block > .btn-warning  {
-    display: none;
-} */

@@ -1,26 +1,33 @@
 import React, { Component } from "react";
 import "./Tasks.css";
-import Task from "../../Components/Task/Task"
-import {connect} from 'react-redux'
-import {getTasks, 
-        clickTaskDelete,
-        setToLS, 
-        clickTaskDoneHandler,
-        clickAllTaskDelete
-        } from '../../store/actions/tasks'
+import Task from "../../Components/Task/Task";
+import { connect } from "react-redux";
+import {
+  getTasks,
+  clickTaskDelete,
+  setToLS,
+  clickTaskDoneHandler,
+  clickAllTaskDelete,
+} from "../../store/actions/tasks";
 
 class Tasks extends Component {
-  state = {
-    taskDone: 0
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      taskDone: 0,
+    };
+
+    this.doneHandler = this.doneHandler.bind(this);
   }
 
   componentDidMount() {
-    this.props.getTasks()
+    this.props.getTasks();
   }
 
-  setToLS = tasks => this.props.setToLS(tasks);
+  setToLS = (tasks) => this.props.setToLS(tasks);
 
-  doneHandler = () => {
+  doneHandler() {
     // this.props.doneHandlerTask()
     const tasks = [...this.props.tasks];
     let taskDone = this.state.taskDone;
@@ -28,10 +35,10 @@ class Tasks extends Component {
     tasks.map((item) => (item.status === "Done" ? taskDone++ : taskDone));
 
     return taskDone;
-  };
+  }
 
   clickDoneHandler = (id) => {
-    this.props.clickTaskDoneHandler(id)
+    this.props.clickTaskDoneHandler(id);
     // const tasks = [...this.state.tasks];
     // const idx = tasks.findIndex((c) => c.id === id);
     // tasks[idx].status = "Done";
@@ -40,7 +47,7 @@ class Tasks extends Component {
   };
 
   clickTaskDelete = (id) => {
-    this.props.clickTaskDelete(id)
+    this.props.clickTaskDelete(id);
     // const tasks = [...this.state.tasks];
     // const idx = tasks.findIndex((c) => c.id === id);
     // tasks.splice(idx, 1);
@@ -49,7 +56,7 @@ class Tasks extends Component {
   };
 
   deleteAllTask = () => {
-    this.props.clickAllTaskDelete()
+    this.props.clickAllTaskDelete();
     // const tasks = [...this.state.tasks];
     // tasks.splice(0, tasks.length);
     // this.setState({ tasks });
@@ -98,18 +105,18 @@ class Tasks extends Component {
 
 function mapStateToProps(state) {
   return {
-    tasks: state.tasks.tasks
-  }
+    tasks: state.tasks.tasks,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getTasks: () => dispatch(getTasks()),
-    setToLS: task => dispatch(setToLS(task)),
-    clickTaskDelete: id => dispatch(clickTaskDelete(id)),
-    clickTaskDoneHandler: id => dispatch(clickTaskDoneHandler(id)),
-    clickAllTaskDelete: () => dispatch(clickAllTaskDelete())
-  }
+    setToLS: (task) => dispatch(setToLS(task)),
+    clickTaskDelete: (id) => dispatch(clickTaskDelete(id)),
+    clickTaskDoneHandler: (id) => dispatch(clickTaskDoneHandler(id)),
+    clickAllTaskDelete: () => dispatch(clickAllTaskDelete()),
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tasks)
+export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

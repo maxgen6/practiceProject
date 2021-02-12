@@ -1,8 +1,8 @@
 .create {
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
@@ -13,7 +13,7 @@
     text-align: center;
 }
 
-.form input, 
+.form input,
 .form textarea {
     display: block;
     margin: 0 auto;
@@ -26,12 +26,12 @@
 }
 
 .form textarea {
-    resize: none;
+  resize: none;
 }
 
-.form input:focus, 
+.form input:focus,
 .form textarea:focus {
-    box-shadow: 10px 0 15px 0 rgba(0 0 0 / 20%);
+  box-shadow: 10px 0 15px 0 rgba(0 0 0 / 20%);
 }
 
 .button-block {
