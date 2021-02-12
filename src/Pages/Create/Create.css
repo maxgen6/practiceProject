@@ -6,7 +6,7 @@
 }
 
 .form {
-    width: 50%;
+    width: 80%;
     border: 1px solid rgba(0 0 0 / 20%);
     border-radius: 5px;
     box-shadow: 10px 0 15px 0 rgba(0 0 0 / 20%);
@@ -17,7 +17,7 @@
 .form textarea {
     display: block;
     margin: 0 auto;
-    width: 350px;
+    width: 80%;
     padding: 20px;
     margin-bottom: 10px;
     outline: none;
@@ -35,5 +35,20 @@
 }
 
 .button-block {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 25px;
+}
+
+.button-block .btn-primary {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 330px) {
+    .create {
+        margin-top: 20px;
+    }
 }

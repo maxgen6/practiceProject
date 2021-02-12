@@ -11,3 +11,15 @@
 .home p {
     font-size: 26px;
 }
+
+@media screen and (max-width: 330px) {
+    .home h1{
+        font-size: 40px;
+        margin-top: 25px;
+    }
+
+    .home p {
+        margin: 0 auto;
+        width: 90%;
+    }
+}

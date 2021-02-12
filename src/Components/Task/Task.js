@@ -5,8 +5,10 @@ const Task = props => {
     return (
         props.tasks.map(task => {
             
-            return (<div key={task.id} className={task.status === 'Not' ? 'task' : 'task task__done'}>
+            return (
+            <div key={task.id} className={task.status === 'Not' ? 'task' : 'task task__done'}>
                 <div className="title">{task.title}</div>
+
                 <div className="btn-block">
                     <button 
                         onClick={props.clickTaskOpen.bind(null, task)}
