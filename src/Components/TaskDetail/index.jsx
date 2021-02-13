@@ -1,5 +1,5 @@
 import React from "react";
-import "./TaskDetail.css";
+import "./index.css";
 
 const TaskDetail = (props) => {
   const task = props.location.state;

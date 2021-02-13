@@ -1,13 +1,13 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import Header from './Components/Header/Header'
+import Header from './Components/Header/'
 import Footer from './Components/Footer/'
 
-import Home from './Pages/Home/Home'
+import Home from './Pages/Home'
 import Create from './Pages/Create/Create'
 import Tasks from './Pages/Tasks/Tasks'
-import TaskDetail from './Components/TaskDetail/TaskDetail'
+import TaskDetail from './Components/TaskDetail'
 import TaskEdit from './Components/TaskEdit/TaskEdit'
 
 const App = () => {
