@@ -1,0 +1,48 @@
+.create {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 80%;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 5px;
+  box-shadow: 10px 0 15px 0 rgba(0, 0, 0, .2);
+  text-align: center;
+  & input,
+    textarea {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    padding: 20px;
+    margin-bottom: 10px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    resize: none;
+    &:focus {
+      box-shadow: 10px 0 15px 0 rgba(0, 0, 0, .2);
+    }
+  }
+}
+
+.button-block {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  & .btn-primary {
+    margin-right: 0;
+}
+}
+
+
+@media screen and (max-width: 330px) {
+  .create {
+    margin-top: 20px;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Create.css";
+import "./Create.scss";
 import { connect } from "react-redux";
 import { getTasks, setToLS, createTask } from "../../store/actions/tasks";
 

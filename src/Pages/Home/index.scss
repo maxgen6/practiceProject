@@ -1,0 +1,25 @@
+.home {
+  margin: 50px auto;
+  text-align: center;
+  & h1 {
+    font-size: 50px;
+    margin-top: 200px;
+  }
+  & p {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .home {
+    & h1{
+    font-size: 40px;
+    margin-top: 25px;
+    }
+    & p {
+      margin: 0 auto;
+      width: 90%;
+    }
+  }
+}
+

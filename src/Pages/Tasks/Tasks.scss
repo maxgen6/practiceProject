@@ -2,12 +2,11 @@
   margin: 70px auto;
   width: 70%;
   text-align: center;
-}
-
-.todos-block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  &-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .tasks {

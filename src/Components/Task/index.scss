@@ -1,0 +1,46 @@
+.task {
+  border: 1px solid rgba(0, 0, 0, .3);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-bottom: 20px;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &__done {
+    background: rgb(75, 248, 7);
+    color: #ffffff;
+  }
+}
+  
+  
+.title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: -5px;
+  &-media {
+    display: none;
+}
+}
+  
+@media screen and (max-width: 770px) {
+    .title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn-block {
+      display: flex;
+      flex-direction: column;
+      & button {
+        margin-bottom: 5px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+}

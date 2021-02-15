@@ -1,11 +1,10 @@
 import React from "react";
-import "./index.css";
 
 const TaskDetail = (props) => {
   const task = props.location.state;
 
   return (
-    <div className="taskdetail">
+    <div style={{marginTop: "20px", marginLeft: "20px"}}>
       <h1>Информация о задаче: </h1>
       <p>
         {" "}
