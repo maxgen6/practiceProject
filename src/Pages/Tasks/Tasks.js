@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Tasks.css";
-import Task from "../../Components/Task/Task";
+import Task from "../../Components/Task";
 import { connect } from "react-redux";
 import {
   getTasks,

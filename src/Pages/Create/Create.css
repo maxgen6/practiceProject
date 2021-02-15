@@ -6,23 +6,23 @@
 }
 
 .form {
-  width: 50%;
-  border: 1px solid rgba(0 0 0 / 20%);
-  border-radius: 5px;
-  box-shadow: 10px 0 15px 0 rgba(0 0 0 / 20%);
-  text-align: center;
+    width: 80%;
+    border: 1px solid rgba(0 0 0 / 20%);
+    border-radius: 5px;
+    box-shadow: 10px 0 15px 0 rgba(0 0 0 / 20%);
+    text-align: center;
 }
 
 .form input,
 .form textarea {
-  display: block;
-  margin: 0 auto;
-  width: 350px;
-  padding: 20px;
-  margin-bottom: 10px;
-  outline: none;
-  border: 1px solid rgba(0 0 0 / 20%);
-  border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    padding: 20px;
+    margin-bottom: 10px;
+    outline: none;
+    border: 1px solid rgba(0 0 0 / 20%);
+    border-radius: 5px;
 }
 
 .form textarea {
@@ -35,5 +35,20 @@
 }
 
 .button-block {
-  margin-bottom: 25px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.button-block .btn-primary {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 330px) {
+    .create {
+        margin-top: 20px;
+    }
 }
