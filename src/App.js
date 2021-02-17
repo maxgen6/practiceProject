@@ -9,6 +9,7 @@ import Create from './Pages/Create/Create'
 import Tasks from './Pages/Tasks/Tasks'
 import TaskDetail from './Components/TaskDetail'
 import TaskEdit from './Components/TaskEdit/TaskEdit'
+import User from './Pages/User/User'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route path="/create" component={Create} />
             <Route path="/tasks" component={Tasks} />
+            <Route path="/user" component={User} />
             <Route path="/task/:id/edit" component={TaskEdit} />
             <Route path="/task/:id" component={TaskDetail} />
 

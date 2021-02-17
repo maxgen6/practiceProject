@@ -24,7 +24,6 @@
   &__block {
     display: flex;
     justify-content: space-between;
-    align-items: center;
   }
   &__logo-text {
     margin: 0;
@@ -111,6 +110,15 @@ li {
   }
 }
 
+.avatar {
+  display: flex;
+  margin-right: 20px;
+  & img {
+    margin-left: 5px;
+    width: 30px;
+    border-radius: 50%;
+  }
+}
 
 @media screen and (max-width: 560px) {
   .header__nav {
