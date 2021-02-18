@@ -1,32 +1,17 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
+import {
+    fetchUserInfo
+} from "../../store/actions/user"
+
 
 class User extends Component {
-    state = {
-        user: []
-    }
-
-    async componentDidMount() {
-        try {
-            const response = await axios.get('http://jsonplaceholder.typicode.com/users/1')  
-            
-            let user = [...this.state.user]
-            if(response.data.length) {
-                response.data.map(item => {
-                    return user.push(item)
-                })    
-            } else {
-                user.push(response.data)
-            }            
-            this.setState({ user: user })
-        } catch(e) {
-            console.log(e);
-        }
+    componentDidMount() {
+        this.props.fetchUserInfo()
     }
 
     render() {
-        return ( this.state.user.map((user, index) => {
+        return ( this.props.user.map((user, index) => {
             return(
                 <div key={index}>
                     <p><b>ID:</b> {user.id}</p>
@@ -41,4 +26,15 @@ class User extends Component {
     }
 }
 
-export default User
+function mapStateToProps(state) {
+    return {
+        user: state.user.user
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+      fetchUserInfo: () => dispatch(fetchUserInfo())
+    }
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(User)

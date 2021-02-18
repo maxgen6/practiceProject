@@ -31,6 +31,16 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 error: action.error
             };
+        case actionTypes.FETCH_SUCCESS_USER_INFO:
+            return {
+                ...state,
+                user: action.user,
+            };
+        case actionTypes.FETCH_ERROR_USER_INFO:
+            return {
+                ...state,
+                error: action.error
+            };
         default:
             return state;
     }

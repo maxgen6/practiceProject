@@ -78,3 +78,37 @@ export function fetchErrorPhoto(e) {
         error: e
     }
 }
+
+export function fetchUserInfo() {
+    return async dispatch => {
+        try {
+            const res = await axios.get('http://jsonplaceholder.typicode.com/users/1')  
+            const user = []
+            
+            if(res.data.length) {
+                res.data.map(item => {
+                    user.push(item)
+                })    
+            } else {
+                user.push(res.data)
+            }
+            dispatch(fetchSuccessUserInfo(user))
+        } catch (error) {
+            dispatch(fetchErrorUserInfo(error))
+        }
+    }
+}
+
+export function fetchSuccessUserInfo(user) {
+    return {
+        type: actionTypes.FETCH_SUCCESS_USER_INFO,
+        user
+    }
+}
+
+export function fetchErrorUserInfo(e) {
+    return {
+        type: actionTypes.FETCH_ERROR_USER_INFO,
+        error: e
+    }
+}
